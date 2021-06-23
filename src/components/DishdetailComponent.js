@@ -11,7 +11,7 @@ class DishDetail extends Component{
                         <h4>Comments</h4>
                     </CardTitle>
                     <ListGroup>
-                        {this.props.dish.comments.map((comment) => {
+                        {comments.map((comment) => {
                             return (
                                 <ListGroupItem key={comment.id}>
                                     <CardText>
