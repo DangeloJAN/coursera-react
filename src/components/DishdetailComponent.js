@@ -34,7 +34,6 @@ class DishDetail extends Component{
     }
 
     renderDish(dish) {
-        console.log({dish});
             return(
                 <Card>
                     <CardImg width="100%" src={dish.image} alt={dish.name} />
@@ -64,3 +63,15 @@ class DishDetail extends Component{
 }
 
 export default DishDetail;
+
+/*
+* En el metodo render se compara el estado de la props "dish" mediante "this.props.dish"
+* luego se les pasalos respectivos parametros a cada funcion por medio de "this.props.dish" y
+* "this.props.dish.comments" respectivamente, luego se construyen las funciones con los paraemtros
+* respectivos "dish" y "comments"
+* en donde "comments" es el parametro que se usa para recorrer cada uno de los atributos por metodo map().
+* y "dish" es el que usa seleccionar cada uno de los atributos del JSON
+* 
+* Como no hay cambio de estado no es necesario this.state = {}
+* ya los cambios de estado los realiza el componente padre "MenuComponent".
+*/

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
-import DishDetail from './DishdetailComponent';
 
 class Menu extends Component {
     constructor(props) {
@@ -43,3 +42,17 @@ class Menu extends Component {
 }
 
 export default Menu;
+
+/*
+* En el metodo render() se define la constante "menu" que se usara para mapear el JSON
+* el objeto JSON es recibido por el padre "App.js" pormedio de la props "this.props.dishes"
+* y se asigna mediante "const menu = this.props.dishes"
+* para el mapeo se necesita una "key" a la cual se le debe asignar una valor unico, el cual viene dado
+* mediante el parametro "dish" de la funcion map(), el cual sera "dish.id"
+* luego en el objeto se utiliza el controlador de eventos "onClick" el cual controlara la funcion 
+* onDishSelect() al momento en el que usuario interactue con la aplicacion.
+* 
+* Al metodo onDishSelect se le pasara como parametro, el parametro dish de la funcion map()
+* luego se construye la funcion "onDishSelect()" cuyo argumento es "dish" (por convencion, ya que puede tener otro nombre)
+* para que realice el cambio de estado de la prop "selectedDish" al valor del parametro recibido por la funcion
+*/

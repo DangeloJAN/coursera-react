@@ -27,3 +27,8 @@ class App extends Component {
 }
 
 export default App;
+
+/*
+* Como es el componente padre tiene como propiedad el JSON que sera pasado a sus hijos mediante
+* la prop "dishes" por medio del estado "this.state.dishes"
+*/
