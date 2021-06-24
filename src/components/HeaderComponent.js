@@ -1,15 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import { Navbar, NavbarBrand } from 'reactstrap';
+import { Navbar, NavbarBrand, Jumbotron } from 'reactstrap';
 
 class Header extends Component{
 
     render() {
-        Return(
+        return(
             <Fragment>
                 <Navbar dark color="primary">
-                <div className="container">
-                    <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-                </div>
+                    <div className="container">
+                        <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
+                    </div>
                 </Navbar>
                 <Jumbotron>
                     <div className="container">
