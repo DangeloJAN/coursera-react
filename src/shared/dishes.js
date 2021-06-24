@@ -48,7 +48,7 @@ export const DISHES =
         ]                        
         },
         {
-        id: 0,
+        id: 1,
         name:'Uthappizza',
         image: 'assets/images/uthappizza.png',
         category: 'mains',

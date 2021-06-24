@@ -1,30 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
-class Menu extends Component {
+function RenderMenuItem({ dish, onClick }) {
+    return(
+        <Card onClick={() => onClick(dish.id)}>
+            <CardImg src={dish.image} alt={dish.name} />
+            <CardImgOverlay>
+                <CardTitle>{dish.name}</CardTitle>
+            </CardImgOverlay>
+        </Card>
+    )
+}
 
-    render() {
-        const menu = this.props.dishes.map((dish) => {
-            return (
-              <div  className="col-12 col-md-5 m-1">
-                <Card key={dish.id}
-                  onClick={() => this.props.onClick(dish.id)}>
-                  <CardImg src={dish.image} alt={dish.name} />
-                  <CardImgOverlay>
-                      <CardTitle>{dish.name}</CardTitle>
-                  </CardImgOverlay>
-                </Card>
-              </div>
-            );
-        });
+const Menu = (props) => {
+    const menu = props.dishes.map((dish) => {
         return (
-            <div className="container">
-                <div className="row">
-                    {menu}
-                </div>
-            </div>
+          <div  key={dish.id} className="col-12 col-md-5 m-1">
+              <RenderMenuItem dish={dish} onClick={props.onClick} />
+          </div>
         );
-    }
+    });
+    return (
+        <div className="container">
+            <div className="row">
+                {menu}
+            </div>
+        </div>
+    );   
 }
 
 export default Menu;
@@ -53,7 +55,26 @@ export default Menu;
 * para ello se elimino: el constructor, la funcion "onDishSelect" y el bloque que 
 * contenia al componente "DishDetail" junto con el import del mismo, los cuales se pasaron
 * al nuevo componente que funcionara como componente CONTENEDOR de los componente representativos
-* el cual es "MainComponent"
+* el cual es "MainComponent", adicionalmente la funcion "onClick" es recibida como props y que va
+* a devolver el "id" del plato seleccionado
+*
+* Se pasa a realizar el cambio de componente de CLASE a componente FUNCIONAL ya que no maneja estados
+* Se elimina lo siguiente: la clase "Compnent" del import de react, la declaracion de clase,
+* la declaracion del render()
+* Se pueden construir componentes funcionales de varias maneras pero por los momentos se veran dos 
+*
+* La primera para cada plato del Menu 
+* Se declara de la siguiente manera: function RenderMenuItem (props) {} o
+* function RenderMenuItem ({ dish, onClick }) {} por destructuring si conoces las props a recibir
+* rederizara la vista indidual de las tarjetas de los platos
+* En la funcion "onClick" de "Card" se elimina "this.props." a "this.props.onClick(dish.id)" 
+* y se deja solamente "onClick(dis.id)" porque la propiedad se esta pasando mediante destructuring  
+*
+* La segunda para la vista general de todos los platos
+* Se declara de la siguiente manera: 
+* la funcion se declara como constante, se la asignan las "props" de forma general y luego se usa   
+* la funcion "=>{}". dentro de las llaves se le elimina "this." a "this.props.dishes.map()" y se
+* deja "props.dishes.map()" por que le estan pasando las props en la declaracion de la funcion
 *
 *
 *
