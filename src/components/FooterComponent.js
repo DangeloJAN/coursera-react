@@ -49,3 +49,7 @@ function Footer (props) {
 }
 
 export default Footer;
+
+/*
+* Se creo como componente funcional y para mejorar la funcionalidad de la app 
+*/

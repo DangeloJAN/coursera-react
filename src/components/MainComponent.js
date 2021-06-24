@@ -47,4 +47,5 @@ export default Main;
 *
 * Tambien se trajo de componente "App" el estilo del renderizado
 *
+* Se agregaron los componentes de "Header" y "Footer" y se elimino el "Navbar" asi como el import de reactstrap
 */

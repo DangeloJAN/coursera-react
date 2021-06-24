@@ -27,3 +27,8 @@ class Header extends Component{
 }
 
 export default Header;
+
+/*
+* Se creo para mejorar la funcionalidad de la app y se trajo del "MainComponent" el import de reactstrap
+* y el "Navbar" y se complemento con el "Jumbotron"
+*/
