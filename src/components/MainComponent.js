@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Switch, Route, Redirect } from 'react-router-dom';
 import { DISHES } from '../shared/dishes';
+import Home from './HomeComponent';
 import Header from './HeaderComponent';
 import Menu from './MenuComponent';
 import DishDetail from './DishdetailComponent';
@@ -10,20 +12,23 @@ class Main extends Component {
         super(props);
         this.state = {
             dishes: DISHES,
-            selectedDish: null
         };
     }
 
-    onDishSelect(dishId) {
-        this.setState({ selectedDish: dishId});
-    }
-
     render() {
+        const HomePage = () => {
+            return(
+                <Home />
+            );
+        }
         return (
             <div>
                 <Header />
-                <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
-                <DishDetail dish={this.state.dishes.filter((dish) => dish.id === this.state.selectedDish)[0]} />
+                <Switch>
+                    <Route path='/home' component={HomePage} />
+                    <Route exact path='/menu' component={() => <Menu dishes={this.state.dishes} />} />
+                    <Redirect to="/home" />
+                </Switch>
                 <Footer />
             </div>
         );
@@ -48,4 +53,20 @@ export default Main;
 * Tambien se trajo de componente "App" el estilo del renderizado
 *
 * Se agregaron los componentes de "Header" y "Footer" y se elimino el "Navbar" asi como el import de reactstrap
+*
+* Al implementar "react-router-dom" se realizaron los siguientes cambios:
+* Se anadio los import de "react-router-dom" y el nuevo componente funcional "Home"
+* Se elimino: la props "selectedDish: null", la funcion "onDishSelect", los componentes "Menu" y "DishDetail"
+* Se agrego los componetes: "Switch" que es el manejara los cambios de ruta, el "Route" que es
+* el encargado de contener las rutas de las diferentes vistas y "Redirect" que redirecciona al "home" 
+* si nada coincide. la propiedad "path" y "exact path" especifican las rutas relativas y absolutas
+* la propiedad component especifican los componentes duenos de las rutas, si el componente no recibe
+* props se colo asi "{HomePage}" y se le desea pasar prop al componente se coloca
+* de la siguiente manera "{() => <Menu dishes={this.state.dishes} />}"
+*
+*
+*
+*
+*
+*
 */
