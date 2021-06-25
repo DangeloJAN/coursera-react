@@ -1,13 +1,16 @@
 import React from 'react';
-import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Card, CardImg, CardImgOverlay, CardTitle, Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 function RenderMenuItem({ dish, onClick }) {
     return(
-        <Card onClick={() => onClick(dish.id)}>
-            <CardImg src={dish.image} alt={dish.name} />
-            <CardImgOverlay>
-                <CardTitle>{dish.name}</CardTitle>
-            </CardImgOverlay>
+        <Card>
+            <Link to={`/menu/${dish.id}`} >
+                <CardImg src={dish.image} alt={dish.name} />
+                <CardImgOverlay>
+                    <CardTitle>{dish.name}</CardTitle>
+                </CardImgOverlay>
+            </Link>
         </Card>
     )
 }
@@ -22,6 +25,16 @@ const Menu = (props) => {
     });
     return (
         <div className="container">
+            <div className="row">
+                <Breadcrumb>
+                    <BreadcrumbItem><Link to="/home">Home</Link></BreadcrumbItem>
+                    <BreadcrumbItem active>Menu</BreadcrumbItem>
+                </Breadcrumb>
+                <div className="col-12">
+                    <h3>Menu</h3>
+                    <hr />
+                </div>                
+            </div>
             <div className="row">
                 {menu}
             </div>
@@ -75,6 +88,14 @@ export default Menu;
 * la funcion se declara como constante, se la asignan las "props" de forma general y luego se usa   
 * la funcion "=>{}". dentro de las llaves se le elimina "this." a "this.props.dishes.map()" y se
 * deja "props.dishes.map()" por que le estan pasando las props en la declaracion de la funcion
+*
+* Para devolver la funcionabilidad del componente "DishDetail" se eliminaron las funciones "onClick" 
+* de las componentes y se importa "Link" d "react-router-dom", y esto ultimo se realiza para pasar las
+* del plato seleccionado como parametros. La etiqueta Link se usa de la siguiente
+* forma: <Link to={`/menu/${dish.id}`} >
+*
+* Luego se anaden migas de pan atraves de los componente "Breadcrumb" y "BreadcrumbItem" ene l componente
+* funcional "Menu"
 *
 *
 *

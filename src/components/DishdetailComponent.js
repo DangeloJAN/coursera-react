@@ -1,46 +1,52 @@
 import React from 'react';
-import { Card, CardImg, CardText, CardBody, CardTitle, ListGroup, ListGroupItem } from 'reactstrap';
+import { Link } from 'react-router-dom';
+import { Card, CardImg, CardText, CardBody, CardTitle, ListGroup, ListGroupItem,
+        Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 function RenderComments({comments}) {
     return (
-        <Card>
-            <CardBody>
-                <CardTitle>
-                    <h4>Comments</h4>
-                </CardTitle>
-                <ListGroup>
-                    {comments.map((comment) => {
-                        return (
-                            <ListGroupItem key={comment.id}>
-                                <CardText>
-                                    <p>{comment.comment}</p>
-                                    <p>-- {comment.author}, &nbsp;
-                                    {new Intl.DateTimeFormat("en-US", {
-                                        year: "numeric",
-                                        month: "short",
-                                        day: "2-digit",
-                                    }).format(new Date(Date.parse(comment.date)))}
-                                    </p>
-                                </CardText>
-                            </ListGroupItem>
-                       );
-                    })};
-                </ListGroup>        
-            </CardBody>
-        </Card>
+        <div className="col-12 col-md-5 m-1">
+            <Card>
+                <CardBody>
+                    <CardTitle>
+                        <h4>Comments</h4>
+                    </CardTitle>
+                    <ListGroup>
+                        {comments.map((comment) => {
+                            return (
+                                <ListGroupItem key={comment.id}>
+                                    <CardText>
+                                        <p>{comment.comment}</p>
+                                        <p>-- {comment.author}, &nbsp;
+                                        {new Intl.DateTimeFormat("en-US", {
+                                            year: "numeric",
+                                            month: "short",
+                                            day: "2-digit",
+                                        }).format(new Date(Date.parse(comment.date)))}
+                                        </p>
+                                    </CardText>
+                                </ListGroupItem>
+                            );
+                        })};
+                    </ListGroup>        
+                </CardBody>
+            </Card>
+        </div>
     );
 }
 
 function RenderDish({dish}) {
-   return(
-        <Card>
-            <CardImg width="100%" src={dish.image} alt={dish.name} />
+    return(
+        <div className="col-12 col-md-5 m-1">
+            <Card>
+                <CardImg width="100%" src={dish.image} alt={dish.name} />
                 <CardBody>
                     <CardTitle>{dish.name}</CardTitle>
                     <CardText>{dish.description}</CardText>
                 </CardBody>
             </Card>
-        );
+        </div>
+    );
 }
 
 const DishDetail = (props) => {
@@ -48,8 +54,18 @@ const DishDetail = (props) => {
         return(
             <div className="container">
                 <div className="row">
-                    <div className="col-12 col-md-5 m-1"><RenderDish dish={props.dish}/></div>
-                    <div className="col-12 col-md-5 m-1"><RenderComments comments={props.dish.comments}/></div>
+                    <Breadcrumb>
+                        <BreadcrumbItem><Link to="/menu">Menu</Link></BreadcrumbItem>
+                        <BreadcrumbItem active>{props.dish.name}</BreadcrumbItem>
+                    </Breadcrumb>
+                    <div className="col-12">
+                        <h3>{props.dish.name}</h3>
+                        <hr />
+                    </div>                
+                </div>
+                <div className="row">
+                    <RenderDish dish={props.dish}/>
+                    <RenderComments comments={props.comments}/>
                 </div>
             </div>
         );
@@ -71,4 +87,22 @@ export default DishDetail;
 * 
 * Como no hay cambio de estado no es necesario this.state = {}
 * ya los cambios de estado los realiza el componente padre "MenuComponent".
+*/
+/**********************************************************************************************************/
+/*
+* Se actualiza el componente de clase para que sea un componente funcional porque no maneja estados
+* En la actulizacion del comoponente, como ahora los comentarios estan en otro archivo se elimina
+* ".dish" de "prop.dish.comments", adicionalmente se agregan los componetes de miga de pan
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
+*
 */
