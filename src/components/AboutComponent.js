@@ -1,37 +1,31 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media, CardImg } from 'reactstrap';
+import { Breadcrumb, BreadcrumbItem, Card, CardBody, CardHeader, Media } from 'reactstrap';
 
 function About(props) {
 
-    function RenderLeader () {
-        return (
-            <div className="col-12">
-                <Media list>
-                    {leaders}
+    function RenderLeader({ leader }) {
+        return(
+            <div key={leader.id} className="col-12 mt-5">
+                <Media tag="li">
+                    <Media left middle>
+                        <Media object src={leader.image} alt={leader.name} />
+                    </Media>
+                    <Media body className="ml-5">
+                        <Media heading>{leader.name}</Media>
+                        <p>{leader.designation}</p>
+                        <p>{leader.description}</p>
+                    </Media>
                 </Media>
             </div>
         );
-    };
+    }
 
     const leaders = props.leaders.map((leader) => {
         return (
-            <div className="container">
-                <div className="row">
-                    <Media>
-                        <div className="col-md-2 mt-2">
-                            <img src={leader.image} alt={leader.name} />
-                        </div>
-                        <div className="col-12 col-md-9 mb-5">
-                            <Media body>
-                                <Media heading>{leader.name}</Media>
-                                {leader.designation} <br />
-                                {leader.description}
-                            </Media>
-                        </div>
-                    </Media>
-                </div>
-            </div>
+            <p>
+              <RenderLeader leader ={leader}/>
+            </p>
         );
     });
 
@@ -89,7 +83,11 @@ function About(props) {
                 <div className="col-12">
                     <h2>Corporate Leadership</h2>
                 </div>
-                <RenderLeader />
+                <div className="col-12">
+                    <Media list>
+                        {leaders}
+                    </Media>
+                </div>
             </div>
         </div>
     );
