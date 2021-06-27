@@ -117,7 +117,7 @@ class CommentForm extends Component{
                             <Row className="form-group">
                                 <Label htmlFor="rating" md={3}>Rating: </Label>
                                 <Col md={9}>
-                                    <Control.select model=".rating" id="rating">
+                                    <Control.select model=".rating" id="rating" className="form-control">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
