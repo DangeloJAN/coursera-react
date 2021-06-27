@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Card, CardImg, CardText, CardBody, CardTitle, ListGroup, ListGroupItem,
         Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import CommentForm from './CommentformComponent';
 
 function RenderComments({comments}) {
     return (
@@ -31,6 +32,7 @@ function RenderComments({comments}) {
                     </ListGroup>        
                 </CardBody>
             </Card>
+            <CommentForm />
         </div>
     );
 }
