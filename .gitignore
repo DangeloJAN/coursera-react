@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/git_ignore
 /.pnp
 .pnp.js
 
